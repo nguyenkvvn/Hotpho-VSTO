@@ -65,7 +65,7 @@ namespace Hotpho
             this.ProtectButton.Name = "ProtectButton";
             this.ProtectButton.ScreenTip = "Inserts a hidden string after each character in the selected range.";
             this.ProtectButton.ShowImage = true;
-            this.ProtectButton.SuperTip = resources.GetString("ProtectButton.SuperTip") + "\n\nBuild Version: " + Assembly.GetExecutingAssembly().GetName().Version;
+            this.ProtectButton.SuperTip = resources.GetString("ProtectButton.SuperTip");
             this.ProtectButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
             // 
             // HotphoRibbon
