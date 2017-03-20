@@ -1,6 +1,6 @@
 ![Hotpho Icon](https://github.com/nguyenkvvn/Hotpho-VSTO/blob/master/Resources/Artboard%201small.png)
 ## Hotpho-VSTO
-An experimental and educational proof-of-concept VSTO Word plugin of demonstrate defeating online content originality checkers. Will not survive a through inspection by design.
+An experimental and educational proof-of-concept VSTO Word plugin demonstration of defeating online content originality checkers. Will not survive a through inspection by design.
 
 ## Installation
 
