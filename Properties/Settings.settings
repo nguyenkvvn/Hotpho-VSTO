@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Hotpho.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="versionNumber" Type="System.String" Scope="User">
+      <Value Profile="(Default)">v0.01a - Pho Chay</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
