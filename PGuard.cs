@@ -93,19 +93,75 @@ namespace Hotpho
             int sLength = s.Length;
 
             //swithing to Parallel.For type loop to take advantage of threading
-            //consequentially, a 100% originality content score is no longer possible, as this does not guarantee that *all* characters will get token'd. (meaning there will be some "unoriginality", debunking the 100% original content red flag
+            //consequentially, a 100% originality content score is no longer possible, as this does not guarantee that *all* characters will get token'd. (meaning there will be some "unoriginality", debunking the 100% original content red flag)
+            //so the issue with the method below is that tokens are inserted inconcistiently. 
             Parallel.For(0, sLength - 1, i =>
             {
                 //insert the token
                 //Debug.Write("\n[NOTE] Inserting token " + token + " at index " + i + " out of " + sLength + " with character: " + tString.Substring(i, 1));
-                //BROKEN: if there is a token before the insertion point, do not insert another consecutive token
-                if (!tString.Substring(i, 1).Equals(token))
+                if ((tString[i] != token[0]) && (tString[i] != ' ')) /*(!(tString.Substring(i, 1).Equals(token)) || !(tString.Substring(i,1).Equals(" ")))*/
                 {
                     tString = tString.Insert(i, token);
                 }
             });
 
-            return tString;
+            //sequential cleanup
+            //the cleanup removes duplicate tokens and inserts a token that may be missed by the Parallel.For
+            //it does not behave as expected in that there is a token after every single character, but it there is a token after enough.
+            string dString = "";
+            //working backwards
+            for (int i = tString.Length - 1; i > 0; i--)
+            {
+                //if the character behind the current index is NOT a token
+                if (tString[i - 1] != token[0])
+                {
+                    //and the current character is also NOT a token
+                    if (tString[i] != token[0])
+                    {
+                        //then insert the token
+                        //tString.Insert(i, token);
+
+                        //ALT
+                        dString = dString + token + tString[i];
+                    }
+                    //and the current character is a token
+                    else
+                    {
+                        //then do nothing
+
+                        //ALT
+                        dString = dString + tString[i];
+                    }
+                }
+                //if the character behind the current index IS a token
+                else if (tString[i - 1] == token[0])
+                {
+                    //tString.Remove(i, 1);
+
+                    //aka dont add it
+                    //dString = dString + tString[i];
+
+                    //and the current character is also a token
+                    if (tString[i] == token[0])
+                    {
+                        //then do not insert the token
+
+                        //ALT
+                        dString = dString;
+                    }
+                    //and the current character is not a token
+                    else
+                    {
+                        //then do nothing
+
+                        //ALT
+                        dString = dString + tString[i];
+                    }
+                }
+            }
+
+            //return the reversed reverse string
+            return new string(dString.ToCharArray().Reverse().ToArray());
         }
 
         //method to convert tokens to random string
